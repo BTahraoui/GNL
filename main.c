@@ -3,17 +3,15 @@
 #include "get_next_line.h"
 #include <stdio.h>
 
-int main(int argc, char const *argv[])
+int main()
 {
-    (void)argc;
-    (void)argv;
-
-    
-    FILE *pF = fopen("test.txt", "r");
-    char buffer[255];
-    fgets(buffer, 255, pF);
-    printf("%s", buffer);
-
-    fclose(pF);
-    return 0;
+	int fd = open("po.txt" , O_CREAT | O_RDWR, 0755);
+	write(fd, "123456789", 10);
+	printf("%d\n", fd);
+	fd = open("po.txt" , O_RDONLY);
+	printf("%d\n", fd);
+	printf("%s\n", get_next_line(fd));
+		fd = open("po.txt" , O_RDONLY);
+	printf("%d\n", fd);
+	printf("%s\n", get_next_line(fd));
 }

@@ -6,7 +6,7 @@
 /*   By: batahrao <batahrao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/16 06:38:15 by batahrao          #+#    #+#             */
-/*   Updated: 2026/11/16 06:54:22 by batahrao         ###   ########.fr       */
+/*   Updated: 2026/11/17 07:13:48 by batahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(const char *s1, const char *s2)
 {
 	size_t	s1_len;
 	size_t	s2_len;
@@ -43,11 +43,11 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (to_join);
 }
 
-char	*ft_strdup(char *s1)
+char	*ft_strdup(const char *s1)
 {
 	char	*to_dup;
-	int		total;
-	int		i;
+	size_t	total;
+	size_t	i;
 
 	if (!s1)
 		return (NULL);
@@ -55,13 +55,13 @@ char	*ft_strdup(char *s1)
 	to_dup = malloc((total + 1) * sizeof(char));
 	if (!to_dup)
 		return (NULL);
-    i = 0;
+	i = 0;
 	while (s1[i])
 	{
 		to_dup[i] = s1[i];
 		i++;
 	}
-	to_dup = '\0';
+	to_dup[i] = '\0';
 	return (to_dup);
 }
 
