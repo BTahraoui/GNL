@@ -6,7 +6,7 @@
 /*   By: batahrao <batahrao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/18 10:33:01 by batahrao          #+#    #+#             */
-/*   Updated: 2026/11/18 11:13:43 by batahrao         ###   ########.fr       */
+/*   Updated: 2026/11/18 14:44:14 by batahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,24 +68,23 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-char    *ft_strdup(const char *s1)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-    char *to_dup;
-    size_t total;
-    size_t i;
+	char	*ptr;
+	size_t	i;
+	size_t	total_size;
 
-    if (!s1)
-        return (NULL);
-    total = ft_strlen(s1);
-    to_dup = malloc((total + 1) * sizeof(char));
-    if (!to_dup)
-        return (NULL);
-    i = 0;
-    while (s1[i])
-    {
-        to_dup[i] = s1[i];
-        i++;
-    }
-    to_dup[i] = '\0';
-    return (to_dup);
+	if (size != 0 && nmemb > (size_t)-1 / size)
+		return (NULL);
+	total_size = nmemb * size;
+	ptr = malloc(total_size);
+	if (!ptr)
+		return (NULL);
+	i = 0;
+	while (i < total_size)
+	{
+		ptr[i] = '\0';
+		i++;
+	}
+	return (ptr);
 }
