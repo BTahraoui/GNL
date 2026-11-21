@@ -6,7 +6,7 @@
 /*   By: batahrao <batahrao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/21 11:05:35 by batahrao          #+#    #+#             */
-/*   Updated: 2026/11/21 16:01:29 by batahrao         ###   ########.fr       */
+/*   Updated: 2026/11/21 20:02:14 by batahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ char	*get_rest(char *s)
 {
 	char	*rest_ln;
 	size_t	size;
-	int		i;
+	size_t	i;
 	int		x;
 
 	if (!s)
 		return (NULL);
 	x = find_nl(s);
-	if (x == -1 || x == ft_strlen(s) - 1)
+	if (x == -1 || (size_t)x == ft_strlen(s) - 1)
 		return (NULL);
 	x++;
 	size = ft_strlen(s) - x;
@@ -112,19 +112,14 @@ char	*get_next_line(int fd)
 {
 	static char *stash;
 	char *line;
-
+	char *tmp;
+	
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	
-}
-
-int	main(void)
-{
-	char *s = "dsad";
-	char *s2 = "hello";
-	char *x = ft_join_free(s, s2);
-	printf("%s", x);
-	free(x);
-	x = NULL;
-	return (0);
+	stash = read_to_stash(fd, stash);
+	line = cut_line(stash);
+	tmp = stash;
+	stash = get_rest(stash);
+	free(tmp);
+	return (line);
 }
