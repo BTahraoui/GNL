@@ -6,7 +6,7 @@
 /*   By: batahrao <batahrao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/21 11:18:59 by batahrao          #+#    #+#             */
-/*   Updated: 2026/11/21 15:28:45 by batahrao         ###   ########.fr       */
+/*   Updated: 2026/11/22 11:14:58 by batahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@ size_t	ft_strlen(const char *s)
 		i++;
 	return (i);
 }
-char *ft_strcpy(char *d, char *s)
+
+char	*ft_strcpy(char *d, char *s)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	if (!d || !s)
 		return (NULL);
@@ -36,11 +37,14 @@ char *ft_strcpy(char *d, char *s)
 	d[i] = '\0';
 	return (d);
 }
+
 int	ft_strchr(const char *s, int c)
 {
 	int				i;
 	unsigned char	x;
 
+	if (!s)
+		return (-1);
 	i = 0;
 	x = (unsigned char)c;
 	while (s[i] != '\0')
@@ -51,6 +55,7 @@ int	ft_strchr(const char *s, int c)
 	}
 	return (-1);
 }
+
 char	*ft_join(char *d, char *s)
 {
 	size_t	d_len;
@@ -66,10 +71,11 @@ char	*ft_join(char *d, char *s)
 	ft_strcpy(joined + d_len, s);
 	return (joined);
 }
-char *ft_strdup(const char *s)
+
+char	*ft_strdup(const char *s)
 {
-	char *dup;
-	size_t s_len;
+	char	*dup;
+	size_t	s_len;
 
 	if (!s)
 		return (NULL);

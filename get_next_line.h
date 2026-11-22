@@ -6,12 +6,12 @@
 /*   By: batahrao <batahrao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/21 11:06:00 by batahrao          #+#    #+#             */
-/*   Updated: 2026/11/21 15:25:43 by batahrao         ###   ########.fr       */
+/*   Updated: 2026/11/22 10:43:15 by batahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE
-# define GET_NEXT_LINE
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1337

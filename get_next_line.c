@@ -6,18 +6,11 @@
 /*   By: batahrao <batahrao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/21 11:05:35 by batahrao          #+#    #+#             */
-/*   Updated: 2026/11/21 20:02:14 by batahrao         ###   ########.fr       */
+/*   Updated: 2026/11/22 11:15:38 by batahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-int	find_nl(char *s)
-{
-	if (!s)
-		return (-1);
-	return (ft_strchr(s, '\n'));
-}
 
 char	*cut_line(char *s)
 {
@@ -52,7 +45,7 @@ char	*get_rest(char *s)
 
 	if (!s)
 		return (NULL);
-	x = find_nl(s);
+	x = ft_strchr(s, '\n');
 	if (x == -1 || (size_t)x == ft_strlen(s) - 1)
 		return (NULL);
 	x++;
@@ -70,12 +63,13 @@ char	*get_rest(char *s)
 	return (rest_ln);
 }
 
-char *ft_join_free(char *stash, char *buff)
+char	*ft_join_free(char *stash, char *buff)
 {
-	char *new_stash;
+	char	*new_stash;
+
 	if (!stash)
 		stash = ft_strdup("");
-	new_stash  = ft_join(stash, buff);
+	new_stash = ft_join(stash, buff);
 	free(stash);
 	return (new_stash);
 }
@@ -89,7 +83,7 @@ char	*read_to_stash(int fd, char *stash)
 	if (!buff)
 		return (free(stash), NULL);
 	res = 1;
-	while (find_nl(stash) == -1 && res > 0)
+	while (ft_strchr(stash, '\n') == -1 && res > 0)
 	{
 		res = read(fd, buff, BUFFER_SIZE);
 		if (res < 0)
@@ -110,10 +104,10 @@ char	*read_to_stash(int fd, char *stash)
 
 char	*get_next_line(int fd)
 {
-	static char *stash;
-	char *line;
-	char *tmp;
-	
+	static char	*stash;
+	char		*line;
+	char		*tmp;
+
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
 	stash = read_to_stash(fd, stash);
